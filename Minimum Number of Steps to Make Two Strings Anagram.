@@ -1,1 +1,29 @@
-Minimum Number of Steps to Make Two Strings Anagram
+Problem: Minimum Number of Steps to Make Two Strings Anagram
+You are given two strings of the same length s and t. In one step you can choose any character of t and replace it with another character.
+Return the minimum number of steps to make t an anagram of s.
+An Anagram of a string is a string that contains the same characters with a different (or the same) ordering.
+
+Solution: 
+
+class Solution {
+    public int minSteps(String s, String t) {
+        int[] arr1 = new int[26];
+        int[] arr2 = new int[26]; 
+        char[] ch1 = s.toCharArray();
+        char[] ch2 = t.toCharArray();
+
+        for(int i =0; i < ch1.length; i++) {
+            arr1[ch1[i]-'a'] += 1;
+        }
+
+        for(int j =0; j < ch2.length; j++) {
+            arr2[ch2[j]-'a'] += 1;
+        }
+
+        int sum = 0;
+        for(int k = 0; k < 26; k++) {
+            sum += Math.abs(arr1[k] - arr2[k]);
+        }
+        return sum/2;
+    }
+}
